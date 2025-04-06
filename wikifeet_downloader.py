@@ -9,8 +9,7 @@ import sys
 non_bot_header = {'User-Agent': 'Mozilla/5.0'}
 
 # patterns used to recognize if given url is a valid wikifeet or wikifeetx one
-wikifeet_pattern = 'https:\/\/www\.wikifeet\.com\/[a-zA-Z_]+'
-wikifeetx_pattern = 'https:\/\/www\.wikifeetx\.com\/[a-zA-Z_]+'
+wikifeet_pattern = 'https:\/\/(www\.)?(wikifeet|wikifeetx)\.com\/.+'
 
 # JSONExtractor class extracts the javascript associative array found in every model html page;
 # it contains a lists of every model feet pic and can be interpreted as json data
@@ -90,8 +89,8 @@ if __name__=="__main__":
         model_name = url.split('/')[-1]
 
 
-        # if link looks like a wikifeet.com or wikifeetx.com one, proceed
-        if re.search(wikifeet_pattern, url) or re.search(wikifeetx_pattern, url):
+        # if link looks like a wikifeet one, proceed
+        if re.search(wikifeet_pattern, url):
             r = requests.get(url, non_bot_header)
 
             # checking if the link is actually valid, and if we can obtain (GET) the page
