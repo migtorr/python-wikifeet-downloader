@@ -16,7 +16,7 @@ wikifeetx_pattern = 'https:\/\/www\.wikifeetx\.com\/[a-zA-Z_]+'
 # it contains a lists of every model feet pic and can be interpreted as json data
 class JSONExtractor:
 
-    js_variable = "messanger['gdata'] = ["
+    js_variable = "tdata = "
 
     def __init__(self, text=""):
         self.text = text
@@ -56,7 +56,7 @@ class JPGDownloader:
     def download_image(self, link):
         filename = link.split('/')[-1]
         filepath = os.path.join(self.path, filename)
-        r = requests.get(link, non_bot_header, stream=True)
+        r = requests.get(link, headers=non_bot_header, stream=True)
         if r.status_code == 200:
             with open(filepath, 'wb') as f:
                 f.write(r.content)
@@ -68,7 +68,7 @@ class JPGDownloader:
 def build_pid_list(json_dict):
     pids = []
     for index, element in enumerate(json_dict):
-        pids.append(json_dict[index]['pid'])
+        pids.append(json_dict['gallery'][index]['pid'])
     pids.sort()
 
     return pids
