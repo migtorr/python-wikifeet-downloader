@@ -66,7 +66,7 @@ class JPGDownloader:
 # pid = picture id, used later to build a link to the picture itself
 def build_pid_list(json_dict):
     pids = []
-    for index, element in enumerate(json_dict):
+    for index, element in enumerate(json_dict['gallery']):
         pids.append(json_dict['gallery'][index]['pid'])
     pids.sort()
 
@@ -133,5 +133,5 @@ if __name__=="__main__":
             print("Error: No wikifeet.com url detected")
     except KeyboardInterrupt:
         print("\nKeyboard interrupt received, exiting.")
-        sys.exit(0)
+        sys.exit(1)
     sys.exit(0)
