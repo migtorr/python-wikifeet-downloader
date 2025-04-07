@@ -27,7 +27,7 @@ class JSONExtractor:
         # pinpointing the exact location of the json dictionary containing the picture ids
         start_index = self.text.find(self.js_variable)
         start_index = start_index + len(self.js_variable) - 1
-        end_index = self.text.find(';', start_index)
+        end_index = self.text.find('\n', start_index) - 1
         actress_json_data_string = self.text[start_index:end_index]
         return json.loads(actress_json_data_string)
 
