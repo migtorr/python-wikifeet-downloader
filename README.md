@@ -15,3 +15,8 @@ wikifeet_downloader.py url
 ```
 
 If no download path is specified, the tool defaults to creating a folder in the current directory with the model's name.
+
+## TODOs:
+
+- Support multithreading
+- Remember already downloaded pictures
